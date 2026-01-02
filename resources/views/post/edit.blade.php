@@ -9,6 +9,12 @@
       @csrf
       @method('PUT')
 
+      <div class="flex items-center justify-end w-full">
+        <button form="delete-post-form" class="px-4 py-2 bg-red-500 text-white text-sm font-semibold rounded-lg hover:bg-red-600 transition-colors duration-300">
+          Delete post
+        </button>
+      </div>
+
       <div>
         <label for="title" class="block text-sm font-semibold text-gray-700 mb-2">
           Title
@@ -84,7 +90,7 @@
           id="update-post-button"
           class="px-6 py-3 bg-black text-white font-semibold rounded-lg hover:bg-gray-700 transition-colors duration-300"
         >
-          Update Post
+          Update post
         </button>
         <a 
           href="/post/{{ $post->slug }}" 
@@ -93,6 +99,10 @@
           Cancel
         </a>
       </div>
+    </form>
+    <form method="POST" action="/post/{{ $post->slug }}" class="hidden" id="delete-post-form">
+      @csrf
+      @method('DELETE')
     </form>
   </section>
 

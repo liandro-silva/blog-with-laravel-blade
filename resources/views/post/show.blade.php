@@ -2,6 +2,14 @@
   <article class="mt-[30px] max-w-4xl mx-auto">
     <!-- Header do Post -->
     <header class="mb-8">
+      <div class="flex items-center justify-end gap-3">
+            <a 
+              href="/post/{{ $post->slug }}/edit" 
+              class="px-4 py-2 bg-gray-900 text-white text-sm font-semibold rounded-lg hover:bg-gray-800 transition-colors duration-300"
+            >
+              Edit post
+            </a>
+      </div>
       <div class="mb-6">
         <a href="/" class="text-gray-600 hover:text-gray-900 text-sm font-medium inline-flex items-center gap-2 mb-4">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -61,20 +69,6 @@
           @if($post->updated_at && $post->updated_at->ne($post->created_at))
             <p class="text-xs text-gray-500">Last updated on {{ $post->updated_at->format('F d, Y') }}</p>
           @endif
-        </div>
-        <div class="flex gap-3">
-          <a 
-            href="/post/{{ $post->slug }}/edit" 
-            class="px-4 py-2 bg-gray-900 text-white text-sm font-semibold rounded-lg hover:bg-gray-800 transition-colors duration-300"
-          >
-            Edit post
-          </a>
-          <a 
-            href="/" 
-            class="px-4 py-2 bg-gray-200 text-gray-700 text-sm font-semibold rounded-lg hover:bg-gray-300 transition-colors duration-300"
-          >
-            Back to home
-          </a>
         </div>
       </div>
     </footer>

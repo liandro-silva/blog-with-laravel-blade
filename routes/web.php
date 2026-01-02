@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 
 
 // --- GENERAL PAGES ---
-
 Route::get('/', function () {
     $recentsPosts = Post::orderBy('created_at', 'desc')->take(3)->get();
     $posts = Post::paginate(10);
@@ -85,4 +84,10 @@ Route::put('/post/{slug}', function ($slug) {
     
     return redirect('/post/' . $post->slug)->with('success', 'Post updated successfully');
 
+});
+
+Route::delete('/post/{slug}', function ($slug) {
+    $post = Post::where('slug', $slug)->firstOrFail();
+    $post->delete();
+    return redirect('/')->with('success', 'Post deleted successfully');
 });
