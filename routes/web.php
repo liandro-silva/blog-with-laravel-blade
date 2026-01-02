@@ -24,8 +24,7 @@ Route::get('/post/{slug}/edit', function ($slug) {
     return view('post.edit', ['post' => $post]);
 });
 
-Route::get('/post/{slug}', function ($slug) {
-    $post = Post::where('slug', $slug)->firstOrFail();
+Route::get('/post/{post:slug}', function (Post $post) {
     return view('post.show', ['post' => $post]);
 });
 
@@ -65,15 +64,13 @@ Route::post('/post', function () {
     }
 });
 
-Route::put('/post/{slug}', function ($slug) {
+Route::put('/post/{post:slug}', function (Post $post) {
     request()->validate([
         'title' => 'required|string|max:255',
         'slug' => 'required|string|max:255',
         'tags' => 'required|string|max:255',
         'content' => 'required|string',
     ]);
-
-    $post = Post::where('slug', $slug)->firstOrFail();
 
     $post->update([
         'title' => request('title'),
@@ -86,8 +83,7 @@ Route::put('/post/{slug}', function ($slug) {
 
 });
 
-Route::delete('/post/{slug}', function ($slug) {
-    $post = Post::where('slug', $slug)->firstOrFail();
+Route::delete('/post/{post:slug}', function (Post $post) {
     $post->delete();
     return redirect('/')->with('success', 'Post deleted successfully');
 });
