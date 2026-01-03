@@ -6,9 +6,8 @@ use Illuminate\Support\Facades\Route;
 
 
 // --- GENERAL PAGES ---
-Route::get('/about', function () {
-    return view('about');
-});
+
+Route::view('/about', 'about');
 
 // --- POST PAGES ---
 Route::get('/', [PostController::class, 'listAllPosts']);
