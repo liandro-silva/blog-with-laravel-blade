@@ -20,6 +20,11 @@ class Post extends Model
         'content',
     ];
 
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
     public function getTagsAttribute($value): array
     {
         if (empty($value)) {

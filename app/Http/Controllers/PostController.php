@@ -6,12 +6,12 @@ use App\Models\Post;
 
 class PostController extends Controller
 {
-    public function listAllPosts()
+    public function index()
     {
         $recentsPosts = Post::orderBy('created_at', 'desc')->take(3)->get();
         $posts = Post::paginate(10);
 
-        return view('index', ['recentsPosts' => $recentsPosts, 'posts' => $posts]);
+        return view('post.index', ['recentsPosts' => $recentsPosts, 'posts' => $posts]);
     }
 
     public function create()
