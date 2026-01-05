@@ -8,7 +8,7 @@
     <a 
         href="{{ $href }}" 
         {{ $attributes->except(['href', 'type', 'class']) }}
-        class="bg-slate-900 text-white hover:bg-gray-800 active:bg-gray-900 transition-colors duration-300 px-4 py-2 rounded-md {{ $class }}"
+        class="{{ $class }} bg-slate-900 text-white hover:bg-gray-800 active:bg-gray-900 transition-colors duration-300 px-4 py-2 rounded-md "
     >
         {{ $slot }}
     </a>

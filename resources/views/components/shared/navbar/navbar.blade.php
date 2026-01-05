@@ -26,13 +26,37 @@ $menuItems = [
                     @endforeach
                 </ul>
             </nav>
-            <div class="hidden md:block">
-                <x-shared.button
-                    type="anchor"
-                    href="/post/create"
-                    class="bg-slate-900 text-white hover:bg-gray-800 active:bg-gray-900 transition-colors duration-300 px-4 py-4 rounded-md">
-                    Create new post
-                </x-shared.button>
+            <div class="hidden md:flex gap-4">
+                @auth
+                    <a
+                        href="/post/create"
+                        class="bg-white text-gray-900 border border-gray-800 hover:bg-gray-800 hover:text-white active:bg-gray-900 transition-colors duration-300 px-4 py-4 rounded-md">
+                        Create new post
+                    </a>
+                    <div class="flex items-center gap-2">
+                        <span class="text-slate-900">{{ auth()->user()->name }}</span>
+                        <form action="/auth/logout" method="POST" class="flex items-center gap-2">
+                            @csrf
+                            <button
+                                type="submit"
+                                class="bg-red-500 text-white hover:bg-gray-800 active:bg-gray-900 transition-colors duration-300 px-1 py-1 rounded-md">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out">
+                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                    <polyline points="16 17 21 12 16 7"></polyline>
+                                    <line x1="21" y1="12" x2="9" y2="12"></line>
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+                @endauth
+                @guest
+                    <a
+                            type="anchor"
+                            href="/auth/login"
+                            class="bg-slate-900 text-white hover:bg-gray-800 active:bg-gray-900 transition-colors duration-300 px-4 py-4 rounded-md">
+                            Login
+                    </a>
+                @endguest
             </div>
             <div class="flex md:hidden">
                 <x-shared.button
